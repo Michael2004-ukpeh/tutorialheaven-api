@@ -15,7 +15,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
   let pool = db::init_db().await?;
   let listener = tokio::net::TcpListener::bind("0.0.0:5000").await.unwrap();
   // let state = 
-  let cors = CorsLayer::new().all_origins(Any).allow_methods(Any).allow_headers(Any);
+  let cors = CorsLayer::new().allow_origin(Any).allow_methods(Any).allow_headers(Any);
   let app = Router::new()
   .route("/",get(|| async{"Hello World!"}))
   .layer(cors)
